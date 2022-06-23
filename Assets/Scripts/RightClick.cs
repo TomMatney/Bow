@@ -6,7 +6,10 @@ using Cinemachine;
 public class RightClick : MonoBehaviour
 {
     public CinemachineVirtualCameraBase vcam;
-    public CinemachineBrain vbrain;
+    public CinemachineVirtualCameraBase zoom;
+
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -16,10 +19,14 @@ public class RightClick : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetMouseButtonDown(1))
+        if (Input.GetMouseButtonDown(1))
         {
-            
+            zoom.Priority = 11;
             Debug.Log("zoom");
+        }
+        else if (Input.GetMouseButtonUp(1))
+        {
+            zoom.Priority = 9;
         }
 
     }
