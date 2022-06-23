@@ -8,6 +8,9 @@ public class RightClick : MonoBehaviour
     public CinemachineVirtualCameraBase vcam;
     public CinemachineVirtualCameraBase zoom;
 
+    public GameObject projectile;
+    public Transform projectileSpawnPoint;
+
 
 
     // Start is called before the first frame update
@@ -19,9 +22,11 @@ public class RightClick : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(1))
+        if (Input.GetMouseButton(1))
         {
+            
             zoom.Priority = 11;
+            BowMode();
             Debug.Log("zoom");
         }
         else if (Input.GetMouseButtonUp(1))
@@ -30,4 +35,20 @@ public class RightClick : MonoBehaviour
         }
 
     }
+
+    private void FireProjectile()
+    {
+        Instantiate(projectile, projectileSpawnPoint.position, projectileSpawnPoint.rotation);
+        Debug.Log("shot");
+    }
+    private void BowMode()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+
+            FireProjectile();
+            Debug.Log("bowmod");
+        }
+    }
 }
+
