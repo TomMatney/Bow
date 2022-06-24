@@ -5,8 +5,9 @@ public class Projectile : MonoBehaviour
     [SerializeField] 
     private float projectileForce;
 
-    private void Start()
+    public void Setforce(float force)
     {
-        GetComponent<Rigidbody>().AddForce(transform.forward * projectileForce, ForceMode.Force);
+        GetComponent<Rigidbody>().AddForce(transform.forward * projectileForce * force, ForceMode.Force);
     }
+
 }
