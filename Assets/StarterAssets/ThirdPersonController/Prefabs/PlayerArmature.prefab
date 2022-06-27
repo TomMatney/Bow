@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1493980822}
-  - component: {fileID: 1493980823}
   m_Layer: 8
   m_Name: projectile
   m_TagString: Untagged
@@ -32,20 +31,6 @@ Transform:
   m_Father: {fileID: 3893294197879345259}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1493980823
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1493980821}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e5fd60f9062c6f449ab16344c37e82cb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  projectile: {fileID: 0}
-  projectileSpawnPoint: {fileID: 1493980822}
 --- !u!1 &122036865199361367
 GameObject:
   m_ObjectHideFlags: 0
@@ -1108,7 +1093,7 @@ Transform:
   - {fileID: 272993188807782130}
   - {fileID: 1493980822}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &6982812146204527121
 Animator:
@@ -1340,6 +1325,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   vcam: {fileID: 0}
   zoom: {fileID: 0}
+  projectile: {fileID: 0}
+  projectileSpawnPoint: {fileID: 8338988566280778637}
+  player: {fileID: 4416926081852918490}
+  forcehold: 0
 --- !u!1 &4523139366846529165
 GameObject:
   m_ObjectHideFlags: 0
