@@ -16,32 +16,37 @@ public class PhotoCapture : MonoBehaviour
     [Header("Photo Fader Effect")]
     [SerializeField] private Animator fadingAnimation;
 
+    [Header("Audio")]
+    [SerializeField] private AudioSource cameraAudio;
+
     private Texture2D screenCapture;
     private bool viewingPhoto;
+    private bool isCaptureingPhoto;
 
     private void Start()
     {
         screenCapture = new Texture2D(Screen.width, Screen.height, TextureFormat.RGB24, false);
     }
-
-    private void Update()
+    public void OnClick(bool isPhotoMode)
     {
-        if (Input.GetMouseButtonDown(0))
+        if (isPhotoMode && viewingPhoto)
         {
-            if (!viewingPhoto)
-            {
-                StartCoroutine(CapturePhoto());
-            }
-            else
-            {
-                RemovePhoto();
-            }
+            RemovePhoto();
+        }
+        if (!isPhotoMode)
+        {
+            RemovePhoto();
+        }
+        if (!viewingPhoto)
+        {
+            StartCoroutine(CapturePhoto());   
         }
     }
-
     IEnumerator CapturePhoto()
-    {
+    {//alt enter
+        if (isCaptureingPhoto) yield break; //cantspam
         cameraUI.SetActive(false);
+        isCaptureingPhoto = true;
         viewingPhoto = true; 
 
         yield return new WaitForEndOfFrame();
@@ -65,15 +70,16 @@ public class PhotoCapture : MonoBehaviour
 
     IEnumerator CameraFlashEffect()
     {
+        cameraAudio.Play();
         cameraFlash.SetActive(true);
         yield return new WaitForSeconds(flashTime);
         cameraFlash.SetActive(false);
+        isCaptureingPhoto = false;
     }
 
-    void RemovePhoto()
+    public void RemovePhoto()
     {
         viewingPhoto = false;
         photoFrame.SetActive(false);
-        cameraUI.SetActive(true);
     }
 }

@@ -5,6 +5,8 @@ using Cinemachine;
 
 public class PhotoMode : MonoBehaviour
 {
+    [SerializeField] PhotoCapture photoCapture;
+
     public CinemachineVirtualCameraBase vcam;
     public CinemachineVirtualCameraBase zoom;
 
@@ -14,6 +16,8 @@ public class PhotoMode : MonoBehaviour
     public StarterAssets.ThirdPersonController player;
 
     public float forcehold = 0f;
+
+    private bool isPhotoModeOn;
 
 
 
@@ -25,9 +29,29 @@ public class PhotoMode : MonoBehaviour
 
     // Update is called once per frame
     void Update()
+    {   //0 = left click 1 = right click
+        //alt enter
+        HandlePhotoModeInput();
+
+        HandlePhotoCaptureInput();
+    }
+
+    private void HandlePhotoCaptureInput()
     {
-        if (Input.GetMouseButton(1)) //right click hold down zooms in
+        if (Input.GetMouseButtonDown(0))
         {
+            photoCapture.OnClick(isPhotoModeOn);
+            
+            UiManager.singleton.ToggleCameraUi(true);
+            
+        }
+    }
+
+    private void HandlePhotoModeInput()
+    {
+        if (Input.GetMouseButtonDown(1)) //right click hold down zooms in
+        {
+            UiManager.singleton.ToggleCameraUi(true);
             player.SprintSpeed = 1;
             player.MoveSpeed = 1;
             zoom.Priority = 11;
@@ -36,27 +60,17 @@ public class PhotoMode : MonoBehaviour
         }
         else if (Input.GetMouseButtonUp(1)) //right click release zooms out
         {
+            UiManager.singleton.ToggleCameraUi(false);
             player.SprintSpeed = 5.335f;
             player.MoveSpeed = 2;
             zoom.Priority = 9;
-            forcehold = 0f;
+            isPhotoModeOn = false;
         }
-
     }
+
     private void PhotoModeOn()
     {
-        if (Input.GetMouseButtonDown(0)) //if zoom in you can press left to start gaining force
-        { 
-            Debug.Log("take a shot");
-        }
-
-        //if (Input.GetMouseButtonUp(0)) //on left click you release force
-        //{
-        //    FireProjectile();
-        //    forcehold = 0f;
-        //    Debug.Log("arrowrelease");
-
-        //}
+        isPhotoModeOn = true;
     }
 
    
