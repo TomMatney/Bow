@@ -6,6 +6,7 @@ using Cinemachine;
 public class PhotoMode : MonoBehaviour
 {
     [SerializeField] PhotoCapture photoCapture;
+    [SerializeField] ShowRemovePhoto showRemovePhoto;
 
     public CinemachineVirtualCameraBase vcam;
     public CinemachineVirtualCameraBase zoom;
@@ -17,20 +18,11 @@ public class PhotoMode : MonoBehaviour
 
     public float forcehold = 0f;
 
-    private bool isPhotoModeOn;
-
-
-
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
+    public bool isPhotoModeOn;
+   
     // Update is called once per frame
     void Update()
-    {   //0 = left click 1 = right click
-        //alt enter
+    {
         HandlePhotoModeInput();
 
         HandlePhotoCaptureInput();
@@ -38,18 +30,16 @@ public class PhotoMode : MonoBehaviour
 
     private void HandlePhotoCaptureInput()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && isPhotoModeOn)
         {
-            photoCapture.OnClick(isPhotoModeOn);
-            
-            UiManager.singleton.ToggleCameraUi(true);
-            
+            Debug.Log("Input to handler");
+            HandleTakePhoto();
         }
     }
 
     private void HandlePhotoModeInput()
     {
-        if (Input.GetMouseButtonDown(1)) //right click hold down zooms in
+        if (Input.GetMouseButtonDown(1) && !isPhotoModeOn) //right click hold down zooms in
         {
             UiManager.singleton.ToggleCameraUi(true);
             player.SprintSpeed = 1;
@@ -57,32 +47,30 @@ public class PhotoMode : MonoBehaviour
             zoom.Priority = 11;
             PhotoModeOn();
             Debug.Log("zoom");
+           
         }
-        else if (Input.GetMouseButtonUp(1)) //right click release zooms out
+        else if (Input.GetMouseButtonDown(1) && isPhotoModeOn) //right click release zooms out
         {
             UiManager.singleton.ToggleCameraUi(false);
             player.SprintSpeed = 5.335f;
             player.MoveSpeed = 2;
             zoom.Priority = 9;
             isPhotoModeOn = false;
+            showRemovePhoto.RemovePhoto();
+            Debug.Log("TEST");
         }
+    }
+
+    private void HandleTakePhoto()
+    {      
+            Debug.Log("Clicker");
+            photoCapture.TakeAPicture();
+            //showRemovePhoto.ShowPhoto();
     }
 
     private void PhotoModeOn()
     {
         isPhotoModeOn = true;
     }
-
-   
-    private void FireProjectile()
-    {
-        GameObject arrow = Instantiate(projectile, projectileSpawnPoint.position, projectileSpawnPoint.rotation);
-        arrow.GetComponent<Projectile>().Setforce(forcehold);
-        Debug.Log("shot");
-        //instanite object
-        //bring object back
-        //give more power as project is hold down
-    }
-   
 }
 

@@ -19,6 +19,8 @@ public class PhotoCapture : MonoBehaviour
     [Header("Audio")]
     [SerializeField] private AudioSource cameraAudio;
 
+    [SerializeField] ShowRemovePhoto removePhoto;
+
     private Texture2D screenCapture;
     private bool viewingPhoto;
     private bool isCaptureingPhoto;
@@ -27,23 +29,23 @@ public class PhotoCapture : MonoBehaviour
     {
         screenCapture = new Texture2D(Screen.width, Screen.height, TextureFormat.RGB24, false);
     }
-    public void OnClick(bool isPhotoMode)
+
+    public void TakeAPicture()
     {
-        if (isPhotoMode && viewingPhoto)
-        {
-            RemovePhoto();
-        }
-        if (!isPhotoMode)
-        {
-            RemovePhoto();
-        }
         if (!viewingPhoto)
         {
-            StartCoroutine(CapturePhoto());   
+            StartCoroutine(CapturePhoto());
+        }
+        else
+        {
+            RemovePhoto();
         }
     }
+
+  
     IEnumerator CapturePhoto()
     {//alt enter
+        viewingPhoto = true;
         if (isCaptureingPhoto) yield break; //cantspam
         cameraUI.SetActive(false);
         isCaptureingPhoto = true;
@@ -55,15 +57,16 @@ public class PhotoCapture : MonoBehaviour
 
         screenCapture.ReadPixels(regionToRead, 0, 0, false);
         screenCapture.Apply();
-        ShowPhoto();
+        TakePhotoData();
     }
 
-    void ShowPhoto()
+    public void TakePhotoData()
     {
         Sprite photoSprite = Sprite.Create(screenCapture, new Rect(0.0f, 0.0f, screenCapture.width, screenCapture.height), new Vector2(0.5f, 0.5f), 100.0f);
         photoDisplayArea.sprite = photoSprite;
 
         photoFrame.SetActive(true);
+
         StartCoroutine(CameraFlashEffect());
         fadingAnimation.Play("CameraAphla");
     }
@@ -77,7 +80,7 @@ public class PhotoCapture : MonoBehaviour
         isCaptureingPhoto = false;
     }
 
-    public void RemovePhoto()
+    void RemovePhoto()
     {
         viewingPhoto = false;
         photoFrame.SetActive(false);

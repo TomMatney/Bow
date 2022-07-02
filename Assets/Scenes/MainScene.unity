@@ -799,6 +799,7 @@ MonoBehaviour:
   flashTime: 1
   fadingAnimation: {fileID: 357391375}
   cameraAudio: {fileID: 1683900971}
+  removePhoto: {fileID: 0}
 --- !u!4 &44250768
 Transform:
   m_ObjectHideFlags: 0
@@ -891,6 +892,7 @@ Transform:
   - {fileID: 1383740729}
   - {fileID: 44250768}
   - {fileID: 1683900970}
+  - {fileID: 131940771}
   m_Father: {fileID: 0}
   m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1048,6 +1050,52 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4860990161488958, guid: cb5c9e5e83770b64597c4aec597a7289, type: 3}
   m_PrefabInstance: {fileID: 108792219}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &131940770
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 131940771}
+  - component: {fileID: 131940772}
+  m_Layer: 0
+  m_Name: ShowRemove
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &131940771
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 131940770}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 81325956}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &131940772
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 131940770}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e371c9cca50a05f4a8858514b8bc465f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  photoDisplayArea: {fileID: 357391372}
+  photoFrame: {fileID: 2250177}
 --- !u!1001 &199288968
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6551,6 +6599,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 610957486}
     - target: {fileID: 3333336399604266997, guid: d275c3fef038a7245a526b8074469782, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3333336399604266997, guid: d275c3fef038a7245a526b8074469782, type: 3}
       propertyPath: projectile
       value: 
       objectReference: {fileID: 1759704674}
@@ -6558,6 +6610,10 @@ PrefabInstance:
       propertyPath: photoCapture
       value: 
       objectReference: {fileID: 44250767}
+    - target: {fileID: 3333336399604266997, guid: d275c3fef038a7245a526b8074469782, type: 3}
+      propertyPath: showRemovePhoto
+      value: 
+      objectReference: {fileID: 131940772}
     - target: {fileID: 6293071799016653684, guid: d275c3fef038a7245a526b8074469782, type: 3}
       propertyPath: m_Name
       value: PlayerBird
