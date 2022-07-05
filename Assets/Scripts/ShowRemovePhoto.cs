@@ -20,7 +20,7 @@ public class ShowRemovePhoto : MonoBehaviour
 
     public void RemovePhoto()
     {
-        Debug.Log("REMOVED");
+        //Debug.Log("REMOVED");
         photoFrame.SetActive(false);
     }
 

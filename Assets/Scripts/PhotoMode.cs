@@ -7,6 +7,7 @@ public class PhotoMode : MonoBehaviour
 {
     [SerializeField] PhotoCapture photoCapture;
     [SerializeField] ShowRemovePhoto showRemovePhoto;
+    [SerializeField] PictureManager scoreManager;
 
     public CinemachineVirtualCameraBase vcam;
     public CinemachineVirtualCameraBase zoom;
@@ -33,7 +34,7 @@ public class PhotoMode : MonoBehaviour
         if (Input.GetMouseButtonDown(0) && isPhotoModeOn)
         {
             Debug.Log("Input to handler");
-            HandleTakePhoto();
+            HandleTakePhoto();       
         }
     }
 
@@ -46,7 +47,7 @@ public class PhotoMode : MonoBehaviour
             player.MoveSpeed = 1;
             zoom.Priority = 11;
             PhotoModeOn();
-            Debug.Log("zoom");
+            //Debug.Log("zoom");
            
         }
         else if (Input.GetMouseButtonDown(1) && isPhotoModeOn) //right click release zooms out
@@ -57,13 +58,13 @@ public class PhotoMode : MonoBehaviour
             zoom.Priority = 9;
             isPhotoModeOn = false;
             showRemovePhoto.RemovePhoto();
-            Debug.Log("TEST");
+            //Debug.Log("ZOOM OFF");
         }
     }
 
     private void HandleTakePhoto()
     {      
-            Debug.Log("Clicker");
+            //Debug.Log("RUN SCRIPT TO TAKE PHOTO");
             photoCapture.TakeAPicture();
             //showRemovePhoto.ShowPhoto();
     }

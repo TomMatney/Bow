@@ -20,6 +20,7 @@ public class PhotoCapture : MonoBehaviour
     [SerializeField] private AudioSource cameraAudio;
 
     [SerializeField] ShowRemovePhoto removePhoto;
+    [SerializeField] PictureManager scoreManager;
 
     private Texture2D screenCapture;
     private bool viewingPhoto;
@@ -31,7 +32,7 @@ public class PhotoCapture : MonoBehaviour
     }
 
     public void TakeAPicture()
-    {
+    {   
         if (!viewingPhoto)
         {
             StartCoroutine(CapturePhoto());
@@ -57,7 +58,8 @@ public class PhotoCapture : MonoBehaviour
 
         screenCapture.ReadPixels(regionToRead, 0, 0, false);
         screenCapture.Apply();
-        TakePhotoData();
+        TakePhotoData(); 
+        scoreManager.getPhotoScore();//reference for scoring photo
     }
 
     public void TakePhotoData()
@@ -84,5 +86,6 @@ public class PhotoCapture : MonoBehaviour
     {
         viewingPhoto = false;
         photoFrame.SetActive(false);
+        UiManager.singleton.ToggleCameraUi(true);
     }
 }
