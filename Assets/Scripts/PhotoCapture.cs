@@ -20,7 +20,7 @@ public class PhotoCapture : MonoBehaviour
     [SerializeField] private AudioSource cameraAudio;
 
     [SerializeField] ShowRemovePhoto removePhoto;
-    [SerializeField] PictureManager scoreManager;
+    [SerializeField] ScoreManager scoreManager;
 
     private Texture2D screenCapture;
     private bool viewingPhoto;

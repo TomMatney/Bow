@@ -2,12 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
+using System;
 
 public class PhotoMode : MonoBehaviour
 {
+    public Action OnPhotoTaken;
+
     [SerializeField] PhotoCapture photoCapture;
     [SerializeField] ShowRemovePhoto showRemovePhoto;
-    [SerializeField] PictureManager scoreManager;
+    [SerializeField] ScoreManager scoreManager;
 
     public CinemachineVirtualCameraBase vcam;
     public CinemachineVirtualCameraBase zoom;
@@ -34,7 +37,8 @@ public class PhotoMode : MonoBehaviour
         if (Input.GetMouseButtonDown(0) && isPhotoModeOn)
         {
             Debug.Log("Input to handler");
-            HandleTakePhoto();       
+            HandleTakePhoto();     
+            
         }
     }
 
@@ -66,6 +70,8 @@ public class PhotoMode : MonoBehaviour
     {      
             //Debug.Log("RUN SCRIPT TO TAKE PHOTO");
             photoCapture.TakeAPicture();
+            if(OnPhotoTaken != null)
+            OnPhotoTaken.Invoke();
             //showRemovePhoto.ShowPhoto();
     }
 
@@ -73,5 +79,5 @@ public class PhotoMode : MonoBehaviour
     {
         isPhotoModeOn = true;
     }
-}
 
+}
