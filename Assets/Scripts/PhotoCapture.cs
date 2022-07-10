@@ -59,7 +59,7 @@ public class PhotoCapture : MonoBehaviour
         screenCapture.ReadPixels(regionToRead, 0, 0, false);
         screenCapture.Apply();
         TakePhotoData(); 
-        scoreManager.getPhotoScore();//reference for scoring photo
+        //scoreManager.getPhotoScore();//reference for scoring photo
     }
 
     public void TakePhotoData()

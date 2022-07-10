@@ -1,9 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Unity.UI;
+using TMPro;
 
 public class UiManager : MonoBehaviour
 {
+    [SerializeField] public GameObject scoreHold;
 
     [SerializeField] private GameObject cameraUI;
     public static UiManager singleton;
@@ -33,6 +36,6 @@ public class UiManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+         
     }
 }

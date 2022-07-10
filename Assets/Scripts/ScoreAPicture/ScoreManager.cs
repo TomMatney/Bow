@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
+
 
 public class ScoreManager : MonoBehaviour
 {
-
+   public float lastScore;
     
     public List<PictureTarget> GetTargetsInFrame()
     {
@@ -69,6 +71,8 @@ public class ScoreManager : MonoBehaviour
 
             Debug.Log(score);
         }
-    } 
+        lastScore = score;
+    }
+   
 
 }

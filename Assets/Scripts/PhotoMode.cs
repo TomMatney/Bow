@@ -6,11 +6,12 @@ using System;
 
 public class PhotoMode : MonoBehaviour
 {
-    public Action OnPhotoTaken;
+    public Action OnPhotoTaken; //makes a varible hold a function
 
     [SerializeField] PhotoCapture photoCapture;
     [SerializeField] ShowRemovePhoto showRemovePhoto;
     [SerializeField] ScoreManager scoreManager;
+    [SerializeField] UiFeels uiFeels;
 
     public CinemachineVirtualCameraBase vcam;
     public CinemachineVirtualCameraBase zoom;
@@ -30,14 +31,18 @@ public class PhotoMode : MonoBehaviour
         HandlePhotoModeInput();
 
         HandlePhotoCaptureInput();
+
     }
+
 
     private void HandlePhotoCaptureInput()
     {
         if (Input.GetMouseButtonDown(0) && isPhotoModeOn)
         {
-            Debug.Log("Input to handler");
-            HandleTakePhoto();     
+            //Debug.Log("Input to handler");
+            scoreManager.getPhotoScore();
+            HandleTakePhoto();
+            uiFeels.PictureFeels();
             
         }
     }
