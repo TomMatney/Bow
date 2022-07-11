@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using MoreMountains.Feedbacks;
+
 public class PhotoCapture : MonoBehaviour
 {
     [Header("Photo Taker")]
@@ -22,9 +24,19 @@ public class PhotoCapture : MonoBehaviour
     [SerializeField] ShowRemovePhoto removePhoto;
     [SerializeField] ScoreManager scoreManager;
 
+    [SerializeField] private float minShowPhotoTime = 1f;
+    private float showPhotoTimer = 0f;
+
+    public MMFeedbacks feelsEnter;
+    public MMFeedbacks feelsExit;
+
     private Texture2D screenCapture;
     private bool viewingPhoto;
     private bool isCaptureingPhoto;
+    private bool isHidingPhoto;
+
+    public float exitTime;
+
 
     private void Start()
     {
@@ -32,25 +44,42 @@ public class PhotoCapture : MonoBehaviour
     }
 
     public void TakeAPicture()
-    {   
+    {
+        if (isHidingPhoto) 
+        {
+            return;
+        }
         if (!viewingPhoto)
         {
+            FeelsEnterRun();
             StartCoroutine(CapturePhoto());
+            showPhotoTimer = minShowPhotoTime;
         }
         else
         {
-            RemovePhoto();
+            if (showPhotoTimer <= 0f)
+            {
+                RemovePhoto();
+            }
         }
     }
 
-  
+    private void Update()
+    {
+        if(showPhotoTimer > 0f)
+        {
+            showPhotoTimer -= Time.deltaTime;
+        }
+    }
+
+
+
     IEnumerator CapturePhoto()
     {//alt enter
         viewingPhoto = true;
-        if (isCaptureingPhoto) yield break; //cantspam
         cameraUI.SetActive(false);
         isCaptureingPhoto = true;
-        viewingPhoto = true; 
+        viewingPhoto = true;
 
         yield return new WaitForEndOfFrame();
 
@@ -58,7 +87,8 @@ public class PhotoCapture : MonoBehaviour
 
         screenCapture.ReadPixels(regionToRead, 0, 0, false);
         screenCapture.Apply();
-        TakePhotoData(); 
+        TakePhotoData();
+        if (isCaptureingPhoto) yield break; //cantspam
         //scoreManager.getPhotoScore();//reference for scoring photo
     }
 
@@ -82,10 +112,29 @@ public class PhotoCapture : MonoBehaviour
         isCaptureingPhoto = false;
     }
 
-    void RemovePhoto()
+    IEnumerator PlayThenRemove()
     {
+        isHidingPhoto = true;
+        FeelsExitRun();
+        yield return new WaitForSeconds(exitTime);
         viewingPhoto = false;
         photoFrame.SetActive(false);
         UiManager.singleton.ToggleCameraUi(true);
+        isHidingPhoto = false;
+    }
+
+    void RemovePhoto()
+    {
+        StartCoroutine(PlayThenRemove());
+    }
+
+    public void FeelsEnterRun()
+    {
+        feelsEnter?.PlayFeedbacks();
+    }
+
+    public void FeelsExitRun()
+    {
+        feelsExit?.PlayFeedbacks();
     }
 }

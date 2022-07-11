@@ -11,7 +11,6 @@ public class PhotoMode : MonoBehaviour
     [SerializeField] PhotoCapture photoCapture;
     [SerializeField] ShowRemovePhoto showRemovePhoto;
     [SerializeField] ScoreManager scoreManager;
-    [SerializeField] UiFeels uiFeels;
 
     public CinemachineVirtualCameraBase vcam;
     public CinemachineVirtualCameraBase zoom;
@@ -41,8 +40,7 @@ public class PhotoMode : MonoBehaviour
         {
             //Debug.Log("Input to handler");
             scoreManager.getPhotoScore();
-            HandleTakePhoto();
-            uiFeels.PictureFeels();
+            HandleTakePhoto();       
             
         }
     }
