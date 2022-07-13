@@ -1,0 +1,3 @@
+- Project vizualization (processing in HDRP) improved;
+- Thematical rigged characters added;
+- Fixed bugs.
