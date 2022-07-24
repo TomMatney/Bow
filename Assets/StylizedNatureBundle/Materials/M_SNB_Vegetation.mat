@@ -2,20 +2,27 @@
 %TAG !u! tag:unity3d.com,2011:
 --- !u!21 &2100000
 Material:
-  serializedVersion: 6
+  serializedVersion: 8
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: M_SNB_Vegetation
   m_Shader: {fileID: 4800000, guid: 041ed92166f5aa9449994e31aba70f1e, type: 3}
-  m_ShaderKeywords: _ALPHATEST_ON _ENVIRONMENTREFLECTIONS_ON _TRANSLUCENCY_ON
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords:
+  - _TRANSLUCENCY_ON
+  m_InvalidKeywords:
+  - _ALPHATEST_ON
+  - _ENVIRONMENTREFLECTIONS_ON
   m_LightmapFlags: 2
   m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
   stringTagMap: {}
   disabledShaderPasses: []
+  m_LockedProperties: 
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
@@ -79,6 +86,7 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    m_Ints: []
     m_Floats:
     - _AlphaCutoff: 0.5
     - _BumpScale: 1
@@ -110,7 +118,7 @@ Material:
     - _SSSScale: 1
     - _ShadowStrength: 0.2
     - _Shininess: 0.8
-    - _Smoothness: 0.174
+    - _Smoothness: 0
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _Specularity: 1.5
