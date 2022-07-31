@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using MoreMountains.Feedbacks;
+using TMPro;
 
 public class PhotoCapture : MonoBehaviour
 {
@@ -27,8 +28,10 @@ public class PhotoCapture : MonoBehaviour
     [SerializeField] private float minShowPhotoTime = 1f;
     private float showPhotoTimer = 0f;
 
+    [Header("Feels")]
     public MMFeedbacks feelsEnter;
     public MMFeedbacks feelsExit;
+    public MMFeedbacks feelsStock;
 
     private Texture2D screenCapture;
     private bool viewingPhoto;
@@ -37,19 +40,32 @@ public class PhotoCapture : MonoBehaviour
 
     public float exitTime;
 
+    [Header("Stock")]
+    public int pictureStock;
+    public bool stockGone;
+    public TextMeshProUGUI stockUi;
+
 
     private void Start()
     {
         screenCapture = new Texture2D(Screen.width, Screen.height, TextureFormat.RGB24, false);
+        stockGone = true;
+    }
+
+    public void StockFeels()
+    {
+        pictureStock -= 1;
+        FeelsStock();
     }
 
     public void TakeAPicture()
     {
+       
         if (isHidingPhoto) 
         {
             return;
         }
-        if (!viewingPhoto)
+        if (!viewingPhoto && stockGone)
         {
             FeelsEnterRun();
             StartCoroutine(CapturePhoto());
@@ -66,9 +82,17 @@ public class PhotoCapture : MonoBehaviour
 
     private void Update()
     {
-        if(showPhotoTimer > 0f)
+        stockUi.SetText(pictureStock.ToString()); //= GetComponent<TextMeshProUGUI>();
+
+        if (showPhotoTimer > 0f)
         {
             showPhotoTimer -= Time.deltaTime;
+        }
+
+        if(pictureStock == 0)
+        {
+            stockGone = false;
+            Debug.Log("stock Gone");
         }
     }
 
@@ -84,7 +108,7 @@ public class PhotoCapture : MonoBehaviour
         yield return new WaitForEndOfFrame();
 
         Rect regionToRead = new Rect(0, 0, Screen.width, Screen.height);
-
+        StockFeels(); //make this a function to add feels
         screenCapture.ReadPixels(regionToRead, 0, 0, false);
         screenCapture.Apply();
         TakePhotoData();
@@ -136,5 +160,10 @@ public class PhotoCapture : MonoBehaviour
     public void FeelsExitRun()
     {
         feelsExit?.PlayFeedbacks();
+    }
+
+    public void FeelsStock()
+    {
+        feelsStock?.PlayFeedbacks();
     }
 }

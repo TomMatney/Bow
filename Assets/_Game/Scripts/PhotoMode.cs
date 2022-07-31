@@ -23,6 +23,7 @@ public class PhotoMode : MonoBehaviour
     public float forcehold = 0f;
 
     public bool isPhotoModeOn;
+
    
     // Update is called once per frame
     void Update()

@@ -56,7 +56,7 @@ public class ScoreManager : MonoBehaviour
     {
         float score = 0f;
         List<PictureTarget> targets = GetTargetsInFrame();
-        Debug.Log("# on screen " + targets.Count);
+        //Debug.Log("# on screen " + targets.Count);
         foreach (PictureTarget target in targets)
         {   //1= center 0 is edge
             float centerFrame = GetIsCenterOfFrame(target.transform.position);
@@ -66,10 +66,10 @@ public class ScoreManager : MonoBehaviour
             //score += 500f * centerFrame;
             score += centerFrame * 250f;
             score += distanceFrame * 250f;
-            Debug.Log("Frame " + GetIsCenterOfFrame(target.transform.position));
-            Debug.Log("Distance " + Vector3.Distance(Camera.main.transform.position, target.transform.position));
+            //Debug.Log("Frame " + GetIsCenterOfFrame(target.transform.position));
+            //Debug.Log("Distance " + Vector3.Distance(Camera.main.transform.position, target.transform.position));
 
-            Debug.Log(score);
+            //Debug.Log(score);
         }
         lastScore = score;
     }
