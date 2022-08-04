@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
 using System;
+using MoreMountains.Feedbacks;
 
 public class PhotoMode : MonoBehaviour
 {
@@ -24,7 +25,10 @@ public class PhotoMode : MonoBehaviour
 
     public bool isPhotoModeOn;
 
-   
+    [Header("FeelsSoundZoomInOut")]
+    public MMFeedbacks feelsSoundZoomIn;
+    public MMFeedbacks feelsSoundZoomOut;
+
     // Update is called once per frame
     void Update()
     {
@@ -50,6 +54,7 @@ public class PhotoMode : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(1) && !isPhotoModeOn) //right click hold down zooms in
         {
+            FeelsSoundZoomIn();
             UiManager.singleton.ToggleCameraUi(true);
             player.SprintSpeed = 1;
             player.MoveSpeed = 1;
@@ -60,6 +65,7 @@ public class PhotoMode : MonoBehaviour
         }
         else if (Input.GetMouseButtonDown(1) && isPhotoModeOn) //right click release zooms out
         {
+            FeelsSoundZoomOut();
             UiManager.singleton.ToggleCameraUi(false);
             player.SprintSpeed = 5.335f;
             player.MoveSpeed = 2;
@@ -84,4 +90,13 @@ public class PhotoMode : MonoBehaviour
         isPhotoModeOn = true;
     }
 
+    public void FeelsSoundZoomIn()
+    {
+        feelsSoundZoomIn?.PlayFeedbacks();
+    }
+
+    public void FeelsSoundZoomOut()
+    {
+        feelsSoundZoomOut?.PlayFeedbacks();
+    }
 }
