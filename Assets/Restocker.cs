@@ -15,6 +15,14 @@ public class Restocker : MonoBehaviour
 
     public bool inOut;
 
+    [Header("things to turn off")]
+    public MonoBehaviour playerControl;
+    public GameObject photoControl;
+    public GameObject animator;
+    
+
+   
+
     // Start is called before the first frame update
     void Start()
     {
@@ -30,9 +38,14 @@ public class Restocker : MonoBehaviour
             isInArea = false;
             inOut = true;
             stockCam.Priority = 11;
+            photoControl.GetComponent<PhotoMode>().enabled = false;
             player.MoveSpeed = 0;
             player.SprintSpeed = 0;
-            
+            animator.GetComponent<Animator>().Play("Idle Walk Run Blend", 1, 0f);
+            animator.GetComponent<Animator>().SetFloat("Speed", 0);
+            playerControl.enabled = false;
+
+
         }
         else if(Input.GetKeyDown(KeyCode.E) && inOut)
         {
@@ -41,9 +54,14 @@ public class Restocker : MonoBehaviour
             stockCam.Priority = 8;
             player.MoveSpeed = 2;
             player.SprintSpeed = 5.335f;
+            playerControl.enabled = true;
+            photoControl.GetComponent<PhotoMode>().enabled = true;
+
+
         }    
     }
 
+   
     private void OnTriggerEnter(Collider other)
     {
         isInArea = true;
