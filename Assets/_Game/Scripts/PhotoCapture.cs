@@ -94,6 +94,10 @@ public class PhotoCapture : MonoBehaviour
             stockGone = false;
             Debug.Log("stock Gone");
         }
+        else if(pictureStock > 0)
+        {
+            stockGone = true;
+        }
     }
 
 

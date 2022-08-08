@@ -6,6 +6,8 @@ using Cinemachine;
 public class Restocker : MonoBehaviour
 {
     public StarterAssets.ThirdPersonController player;
+
+    [SerializeField] PhotoCapture photoCapture;
    
 
     public CinemachineVirtualCameraBase vcam;
@@ -44,6 +46,7 @@ public class Restocker : MonoBehaviour
             animator.GetComponent<Animator>().Play("Idle Walk Run Blend", 1, 0f);
             animator.GetComponent<Animator>().SetFloat("Speed", 0);
             playerControl.enabled = false;
+            reStock();
 
 
         }
@@ -60,7 +63,10 @@ public class Restocker : MonoBehaviour
 
         }    
     }
-
+    private void reStock()
+    {
+        photoCapture.pictureStock = 2;
+    }
    
     private void OnTriggerEnter(Collider other)
     {
