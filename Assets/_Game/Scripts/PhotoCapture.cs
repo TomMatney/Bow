@@ -25,6 +25,9 @@ public class PhotoCapture : MonoBehaviour
     [SerializeField] ShowRemovePhoto removePhoto;
     [SerializeField] ScoreManager scoreManager;
 
+    [Header("DataBase")]
+    [SerializeField] PhotoDatabase photoDatabase;
+
     [SerializeField] private float minShowPhotoTime = 1f;
     private float showPhotoTimer = 0f;
 
@@ -48,7 +51,7 @@ public class PhotoCapture : MonoBehaviour
 
     private void Start()
     {
-        screenCapture = new Texture2D(Screen.width, Screen.height, TextureFormat.RGB24, false);
+        screenCapture = new Texture2D(Screen.height, Screen.height, TextureFormat.RGB24, false);
         stockGone = true;
     }
 
@@ -111,7 +114,10 @@ public class PhotoCapture : MonoBehaviour
 
         yield return new WaitForEndOfFrame();
 
-        Rect regionToRead = new Rect(0, 0, Screen.width, Screen.height);
+        float height = Screen.height;
+        float width = Screen.height;
+        float x = Screen.width / 2f - width / 2f;
+        Rect regionToRead = new Rect(x, 0, width, height);
         StockFeels(); //make this a function to add feels
         screenCapture.ReadPixels(regionToRead, 0, 0, false);
         screenCapture.Apply();
@@ -122,13 +128,25 @@ public class PhotoCapture : MonoBehaviour
 
     public void TakePhotoData()
     {
-        Sprite photoSprite = Sprite.Create(screenCapture, new Rect(0.0f, 0.0f, screenCapture.width, screenCapture.height), new Vector2(0.5f, 0.5f), 100.0f);
+        float height = Screen.height;
+        float width = Screen.height;
+        float x = Screen.width / 2f - width / 2f;
+        Rect regionToRead = new Rect(x, 0, width, height);
+
+        Texture2D texture = new Texture2D((int)width, (int)height);
+        texture.ReadPixels(regionToRead, 0, 0, false);
+        texture.Apply();
+        Sprite photoSprite = Sprite.Create(texture, new Rect(0.0f, 0.0f, screenCapture.width, screenCapture.height), new Vector2(0.5f, 0.5f), 100.0f);
         photoDisplayArea.sprite = photoSprite;
 
         photoFrame.SetActive(true);
 
         StartCoroutine(CameraFlashEffect());
         fadingAnimation.Play("CameraAphla");
+
+        PhotoDatabase.PhotoData photoData = new PhotoDatabase.PhotoData(); //pasing this object into the function
+        photoData.texture = photoSprite;
+        photoDatabase.AddPhoto(photoData);
     }
 
     IEnumerator CameraFlashEffect()

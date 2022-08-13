@@ -8,6 +8,7 @@ public class Restocker : MonoBehaviour
     public StarterAssets.ThirdPersonController player;
 
     [SerializeField] PhotoCapture photoCapture;
+    [SerializeField] CursorManager cursorManager;
    
 
     public CinemachineVirtualCameraBase vcam;
@@ -21,6 +22,7 @@ public class Restocker : MonoBehaviour
     public MonoBehaviour playerControl;
     public GameObject photoControl;
     public GameObject animator;
+    public GameObject photoDatabaseUi;
     
 
    
@@ -30,6 +32,7 @@ public class Restocker : MonoBehaviour
     {
         isInArea = false;
         inOut = false;
+        photoDatabaseUi.SetActive(false);
     }
 
     // Update is called once per frame
@@ -37,21 +40,24 @@ public class Restocker : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.E) && isInArea )
         {
+            cursorManager.showCursor();
             isInArea = false;
             inOut = true;
             stockCam.Priority = 11;
             photoControl.GetComponent<PhotoMode>().enabled = false;
             player.MoveSpeed = 0;
             player.SprintSpeed = 0;
-            animator.GetComponent<Animator>().Play("Idle Walk Run Blend", 1, 0f);
+            animator.GetComponent<Animator>().Play("Idle Walk Run Blend", 0, 0f);
             animator.GetComponent<Animator>().SetFloat("Speed", 0);
             playerControl.enabled = false;
             reStock();
+            photoDatabaseUi.SetActive(true);
 
 
         }
         else if(Input.GetKeyDown(KeyCode.E) && inOut)
         {
+            cursorManager.hideCursor();
             isInArea = true;
             inOut = false;
             stockCam.Priority = 8;
@@ -59,13 +65,13 @@ public class Restocker : MonoBehaviour
             player.SprintSpeed = 5.335f;
             playerControl.enabled = true;
             photoControl.GetComponent<PhotoMode>().enabled = true;
-
+            photoDatabaseUi.SetActive(false);
 
         }    
     }
     private void reStock()
     {
-        photoCapture.pictureStock = 2;
+        photoCapture.pictureStock = 15;
     }
    
     private void OnTriggerEnter(Collider other)
