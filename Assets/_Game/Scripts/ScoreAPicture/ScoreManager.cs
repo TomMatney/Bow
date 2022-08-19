@@ -6,6 +6,7 @@ using TMPro;
 
 public class ScoreManager : MonoBehaviour
 {
+   [SerializeField] PictureTarget pictureTarget;
    public float lastScore;
     
     public List<PictureTarget> GetTargetsInFrame()
@@ -13,12 +14,31 @@ public class ScoreManager : MonoBehaviour
         List<PictureTarget> inFrame = new List<PictureTarget>();
 
         PictureTarget[] targets = FindObjectsOfType<PictureTarget>();
+        //take a picture of cow, targets has cow in it
         foreach (PictureTarget target in targets)
         {
             foreach (Renderer rend in target.GetComponentsInChildren<Renderer>())
             {
                 if (rend.isVisible)
                 {
+                    //set picture types here
+                    if(target.objectiveType == ObjectiveTypes.Cow)
+                    {           
+                        //target is a 
+                        target.CowCapture();
+                    }
+
+                    if(target.objectiveType == ObjectiveTypes.Pig)
+                    {
+                        target.PigCapture();
+                    }
+
+                    if(target.objectiveType == ObjectiveTypes.Duck)
+                    {
+                        target.DuckCapture();
+                    }
+
+
                     inFrame.Add(target);
                     break;
                 }

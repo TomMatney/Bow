@@ -29,12 +29,19 @@ public class PhotoMode : MonoBehaviour
     public MMFeedbacks feelsSoundZoomIn;
     public MMFeedbacks feelsSoundZoomOut;
 
+    public float doubleCheckTime;
+
     // Update is called once per frame
     void Update()
     {
         HandlePhotoModeInput();
 
         HandlePhotoCaptureInput();
+
+        if (!isPhotoModeOn)
+        {
+            UiManager.singleton.ToggleCameraUi(false);
+        }
 
     }
 
@@ -45,15 +52,24 @@ public class PhotoMode : MonoBehaviour
         {
             //Debug.Log("Input to handler");
             scoreManager.getPhotoScore();
-            HandleTakePhoto();       
-            
+            HandleTakePhoto();   
+                
         }
     }
 
+    IEnumerator DoubleCheckUi()
+    {
+        if (!isPhotoModeOn)
+        {
+            yield return new WaitForSeconds(doubleCheckTime);
+            UiManager.singleton.ToggleCameraUi(false);
+        }
+    }
     private void HandlePhotoModeInput()
     {
         if (Input.GetMouseButtonDown(1) && !isPhotoModeOn) //right click hold down zooms in
         {
+
             FeelsSoundZoomIn();
             UiManager.singleton.ToggleCameraUi(true);
             player.SprintSpeed = 1;
@@ -65,6 +81,7 @@ public class PhotoMode : MonoBehaviour
         }
         else if (Input.GetMouseButtonDown(1) && isPhotoModeOn) //right click release zooms out
         {
+            //StartCoroutine(DoubleCheckUi());
             FeelsSoundZoomOut();
             UiManager.singleton.ToggleCameraUi(false);
             player.SprintSpeed = 5.335f;

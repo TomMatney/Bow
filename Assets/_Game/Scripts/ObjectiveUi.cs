@@ -7,6 +7,7 @@ public class ObjectiveUi : MonoBehaviour
 
     public StarterAssets.ThirdPersonController player;
     [SerializeField] PhotoCapture photoCapture;
+    [SerializeField] CursorManager cursorManager;
 
     [Header("things to turn off")]
     public MonoBehaviour playerControl;
@@ -27,8 +28,9 @@ public class ObjectiveUi : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Escape) && openOrClosed)
+        if(Input.GetKeyDown(KeyCode.Tab) && openOrClosed)
         {
+            cursorManager.showCursor();
             photoControl.GetComponent<PhotoMode>().enabled = false;
             player.MoveSpeed = 0;
             player.SprintSpeed = 0;
@@ -41,8 +43,9 @@ public class ObjectiveUi : MonoBehaviour
             openOrClosed = false;
         }
 
-        else if (Input.GetKeyDown(KeyCode.Escape) && !openOrClosed)
+        else if (Input.GetKeyDown(KeyCode.Tab) && !openOrClosed)
         {
+            cursorManager.hideCursor();
             player.MoveSpeed = 2;
             player.SprintSpeed = 5.335f;
             playerControl.enabled = true;

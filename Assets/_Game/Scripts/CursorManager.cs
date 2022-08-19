@@ -8,11 +8,16 @@ public class CursorManager: MonoBehaviour
     public Texture2D startCursor;
     public CursorMode cursorMode = CursorMode.Auto;
     public Vector2 hotSpot = Vector2.zero;
+
+    private int unlockedCounter = 0;
     // Start is called before the first frame update
-    void Start()
+    IEnumerator Start()
     {
-        Cursor.visible = false;
-        Cursor.SetCursor(startCursor, hotSpot, cursorMode);
+        // hideCursor();
+        yield return null;
+        SetCameraLock(true);
+
+        //Cursor.SetCursor(startCursor, hotSpot, cursorMode);
     }
 
 
@@ -35,11 +40,33 @@ public class CursorManager: MonoBehaviour
 
     public void hideCursor()
     {
-        Cursor.visible = false;
+        SetCameraLock(true);
+        //Cursor.visible = false;
     }
 
     public void showCursor()
     {
-        Cursor.visible = true;
+        SetCameraLock(false);
+        //Cursor.visible = true;
+    }
+
+    public void SetCameraLock(bool locked)
+    {
+        if (locked)
+        {
+            unlockedCounter++;
+        }
+        else
+        {
+            unlockedCounter--;
+        }
+        bool shouldLock = unlockedCounter == 0;
+        Cursor.lockState = shouldLock ? CursorLockMode.Locked : CursorLockMode.None;
+    }
+
+    private void OnApplicationFocus(bool focus)
+    {
+        bool shouldLock = unlockedCounter == 0;
+        Cursor.lockState = shouldLock ? CursorLockMode.Locked : CursorLockMode.None;
     }
 }
