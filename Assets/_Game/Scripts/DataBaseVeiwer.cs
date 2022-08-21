@@ -27,31 +27,31 @@ public class DataBaseVeiwer : MonoBehaviour
         PhotoData photo1 = photoDatabase.GetPhotoAtIndex(1);
         if (photo1 != null)
         {
-            photoImage1.GetComponent<ClickPhoto>().score = photo0.scoreOfPhoto;
+            photoImage1.GetComponent<ClickPhoto>().score = photo1.scoreOfPhoto;
             photoImage1.sprite = photo1.texture;
         }
         PhotoData photo2 = photoDatabase.GetPhotoAtIndex(2);
         if (photo2 != null)
         {
-            photoImage2.GetComponent<ClickPhoto>().score = photo0.scoreOfPhoto;
+            photoImage2.GetComponent<ClickPhoto>().score = photo2.scoreOfPhoto;
             photoImage2.sprite = photo2.texture;
         }
         PhotoData photo3 = photoDatabase.GetPhotoAtIndex(3);
         if (photo3 != null)
         {
-            photoImage3.GetComponent<ClickPhoto>().score = photo0.scoreOfPhoto;
+            photoImage3.GetComponent<ClickPhoto>().score = photo3.scoreOfPhoto;
             photoImage3.sprite = photo3.texture;
         }
         PhotoData photo4 = photoDatabase.GetPhotoAtIndex(4);
         if (photo4 != null)
         {
-            photoImage4.GetComponent<ClickPhoto>().score = photo0.scoreOfPhoto;
+            photoImage4.GetComponent<ClickPhoto>().score = photo4.scoreOfPhoto;
             photoImage4.sprite = photo4.texture;
         }
         PhotoData photo5 = photoDatabase.GetPhotoAtIndex(5);
         if (photo5 != null)
         {
-            photoImage5.GetComponent<ClickPhoto>().score = photo0.scoreOfPhoto;
+            photoImage5.GetComponent<ClickPhoto>().score = photo5.scoreOfPhoto;
             photoImage5.sprite = photo5.texture;
         }
 

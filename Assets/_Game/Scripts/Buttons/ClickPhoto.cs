@@ -21,6 +21,7 @@ public class ClickPhoto : MonoBehaviour
     {
         quitButton.gameObject.SetActive(false);
         scoreButton.gameObject.SetActive(false);
+
         Button btn = yourButton.GetComponent<Button>();
         btn.onClick.AddListener(TaskOnClick);
 
@@ -49,7 +50,7 @@ public class ClickPhoto : MonoBehaviour
 
     void ScoreClick()
     {
-        scoreToLikes.scoreToLikeDo();
+        scoreToLikes.scoreToLikeDo(this);
         Debug.Log(score);
     }
 

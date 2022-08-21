@@ -5,9 +5,11 @@ using TMPro;
 
 public class ScoreToLikes : MonoBehaviour
 {
-    [SerializeField] ClickPhoto clickPhoto;
+    
     public int pictureLikes;
     public TextMeshProUGUI likesUi;
+
+    public ClickPhoto[] photos;
 
     // Start is called before the first frame update
     void Start()
@@ -18,25 +20,37 @@ public class ScoreToLikes : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        likesUi.SetText(pictureLikes.ToString("Likes" + pictureLikes));
+        //calcLikes();
+        likesUi.SetText(pictureLikes.ToString("Likes:" + pictureLikes));
 
        
     }
 
-    public void scoreToLikeDo()
+    public int scoreToLikeDo(ClickPhoto clickPhoto)
     {
         if (clickPhoto.score == 0)
         {
-            return;
+            return 0;
         }
 
 
 
-        pictureLikes = (int)(clickPhoto.score / 100 * 1.3);
+        pictureLikes += (int)(clickPhoto.score / 100 * 1.2);
+        return pictureLikes;
         //100 sccore = 1 like
         //200 score = 2 likes
         //300 = 4
         //500 = 6
         //600 = 8
+    }
+    //go through all click photos and calc likes
+    public void calcLikes()
+    {
+        int totalLikes = 0;
+        foreach(ClickPhoto photo in photos)
+        {
+            totalLikes += scoreToLikeDo(photo);
+        }
+        pictureLikes = totalLikes;
     }
 }
