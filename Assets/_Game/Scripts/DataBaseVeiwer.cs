@@ -17,35 +17,41 @@ public class DataBaseVeiwer : MonoBehaviour
 
     public void OnEnable()
     {
-        PhotoDatabase.PhotoData photo0 = photoDatabase.GetPhotoAtIndex(0);
+        PhotoData photo0 = photoDatabase.GetPhotoAtIndex(0);
         if(photo0 != null)
         {
+            photoImage0.GetComponent<ClickPhoto>().score = photo0.scoreOfPhoto;
             photoImage0.sprite = photo0.texture;
         }
 
-        PhotoDatabase.PhotoData photo1 = photoDatabase.GetPhotoAtIndex(1);
+        PhotoData photo1 = photoDatabase.GetPhotoAtIndex(1);
         if (photo1 != null)
         {
+            photoImage1.GetComponent<ClickPhoto>().score = photo0.scoreOfPhoto;
             photoImage1.sprite = photo1.texture;
         }
-        PhotoDatabase.PhotoData photo2 = photoDatabase.GetPhotoAtIndex(2);
+        PhotoData photo2 = photoDatabase.GetPhotoAtIndex(2);
         if (photo2 != null)
         {
+            photoImage2.GetComponent<ClickPhoto>().score = photo0.scoreOfPhoto;
             photoImage2.sprite = photo2.texture;
         }
-        PhotoDatabase.PhotoData photo3 = photoDatabase.GetPhotoAtIndex(3);
+        PhotoData photo3 = photoDatabase.GetPhotoAtIndex(3);
         if (photo3 != null)
         {
+            photoImage3.GetComponent<ClickPhoto>().score = photo0.scoreOfPhoto;
             photoImage3.sprite = photo3.texture;
         }
-        PhotoDatabase.PhotoData photo4 = photoDatabase.GetPhotoAtIndex(4);
+        PhotoData photo4 = photoDatabase.GetPhotoAtIndex(4);
         if (photo4 != null)
         {
+            photoImage4.GetComponent<ClickPhoto>().score = photo0.scoreOfPhoto;
             photoImage4.sprite = photo4.texture;
         }
-        PhotoDatabase.PhotoData photo5 = photoDatabase.GetPhotoAtIndex(5);
+        PhotoData photo5 = photoDatabase.GetPhotoAtIndex(5);
         if (photo5 != null)
         {
+            photoImage5.GetComponent<ClickPhoto>().score = photo0.scoreOfPhoto;
             photoImage5.sprite = photo5.texture;
         }
 

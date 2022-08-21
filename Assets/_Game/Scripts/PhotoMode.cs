@@ -50,9 +50,19 @@ public class PhotoMode : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0) && isPhotoModeOn)
         {
-            //Debug.Log("Input to handler");
-            scoreManager.getPhotoScore();
-            HandleTakePhoto();   
+            if (photoCapture.viewingPhoto)
+            {
+                photoCapture.HidePhoto();
+            }
+            else
+            {
+                if (photoCapture.readyForPhoto == false)
+                { return; }
+                //Debug.Log("Input to handler");
+                float score = scoreManager.getPhotoScore();
+                HandleTakePhoto(score);
+            }
+
                 
         }
     }
@@ -79,8 +89,9 @@ public class PhotoMode : MonoBehaviour
             //Debug.Log("zoom");
            
         }
-        else if (Input.GetMouseButtonDown(1) && isPhotoModeOn) //right click release zooms out
+        else if (Input.GetMouseButtonDown(1) && isPhotoModeOn && photoCapture.showPhotoTimer <= 0) //right click release zooms out
         {
+            photoCapture.HidePhoto();
             //StartCoroutine(DoubleCheckUi());
             FeelsSoundZoomOut();
             UiManager.singleton.ToggleCameraUi(false);
@@ -89,14 +100,14 @@ public class PhotoMode : MonoBehaviour
             zoom.Priority = 9;
             isPhotoModeOn = false;
             showRemovePhoto.RemovePhoto();
-            //Debug.Log("ZOOM OFF");
+            Debug.Log("ZOOM OFF");
         }
     }
 
-    private void HandleTakePhoto()
+    private void HandleTakePhoto(float score)
     {      
             //Debug.Log("RUN SCRIPT TO TAKE PHOTO");
-            photoCapture.TakeAPicture();
+            photoCapture.TakeAPicture(score);
             if(OnPhotoTaken != null)
             OnPhotoTaken.Invoke();
             //showRemovePhoto.ShowPhoto();

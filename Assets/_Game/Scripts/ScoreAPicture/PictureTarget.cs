@@ -22,6 +22,12 @@ public class PictureTarget : MonoBehaviour
         //how to distance different animals 
         //how to score different animals
         //center points and stlish
+        if(objButtons == null)
+        {
+            Debug.LogError("BUTTON NOT HOOKED UP", this);
+            return;
+
+        }
         objButtons.SetColorCompletedCow();
         Debug.Log("THIS HAS BEEN CAPTURE");
     }

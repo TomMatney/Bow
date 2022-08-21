@@ -4,18 +4,7 @@ using UnityEngine;
 
 public class PhotoDatabase : MonoBehaviour
 {
-    [System.Serializable]
-    public class PhotoData
-    {
-        //put all data for a photo here
-        public Sprite texture; //create what the thing can take in
-        Vector3 positionOfPhoto;
-        Vector3 rotationOfPhoto;
-        string animalsInPhoto;
-        //int scoreOfPhoto
-        //string nameOfPhoto
-    }
-
+    
     public List<PhotoData> photos = new List<PhotoData>();
 
     public void AddPhoto(PhotoData photoData)//parameter what it can take in

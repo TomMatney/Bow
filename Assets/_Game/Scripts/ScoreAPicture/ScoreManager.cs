@@ -21,10 +21,17 @@ public class ScoreManager : MonoBehaviour
             {
                 if (rend.isVisible)
                 {
+                    if (Vector3.Distance(Camera.main.transform.position, target.transform.position) > 20)
+                    {
+                        continue;
+                    }
+
+                    
                     //set picture types here
-                    if(target.objectiveType == ObjectiveTypes.Cow)
+                    if (target.objectiveType == ObjectiveTypes.Cow)
                     {           
                         //target is a 
+                       
                         target.CowCapture();
                     }
 
@@ -72,7 +79,7 @@ public class ScoreManager : MonoBehaviour
         }
         return score;
     }
-    public void getPhotoScore()
+    public float getPhotoScore()
     {
         float score = 0f;
         List<PictureTarget> targets = GetTargetsInFrame();
@@ -89,9 +96,12 @@ public class ScoreManager : MonoBehaviour
             //Debug.Log("Frame " + GetIsCenterOfFrame(target.transform.position));
             //Debug.Log("Distance " + Vector3.Distance(Camera.main.transform.position, target.transform.position));
 
-            //Debug.Log(score);
+            Debug.Log(score);
         }
         lastScore = score;
+        return score;
+
+
     }
    
 

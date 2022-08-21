@@ -29,7 +29,7 @@ public class PhotoCapture : MonoBehaviour
     [SerializeField] PhotoDatabase photoDatabase;
 
     [SerializeField] private float minShowPhotoTime = 1f;
-    private float showPhotoTimer = 0f;
+    public float showPhotoTimer = 0f;
 
     [Header("Feels")]
     public MMFeedbacks feelsEnter;
@@ -37,7 +37,7 @@ public class PhotoCapture : MonoBehaviour
     public MMFeedbacks feelsStock;
 
     private Texture2D screenCapture;
-    private bool viewingPhoto;
+    public bool viewingPhoto;
     private bool isCaptureingPhoto;
     private bool isHidingPhoto;
 
@@ -48,38 +48,43 @@ public class PhotoCapture : MonoBehaviour
     public bool stockGone;
     public TextMeshProUGUI stockUi;
 
+    public bool readyForPhoto;
+
 
     private void Start()
     {
+        readyForPhoto = true;
+
         screenCapture = new Texture2D(Screen.height, Screen.height, TextureFormat.RGB24, false);
         stockGone = true;
     }
-
+    
     public void StockFeels()
     {
         pictureStock -= 1;
         FeelsStock();
     }
 
-    public void TakeAPicture()
+    public void TakeAPicture(float score)
     {
        
-        if (isHidingPhoto) 
-        {
-            return;
-        }
+       
         if (!viewingPhoto && stockGone)
         {
+            readyForPhoto = false;
             FeelsEnterRun();
-            StartCoroutine(CapturePhoto());
+            StartCoroutine(CapturePhoto(score));
             showPhotoTimer = minShowPhotoTime;
         }
-        else
+       
+    }
+
+    public void HidePhoto()
+    {
+        if (showPhotoTimer <= 0f && viewingPhoto)
         {
-            if (showPhotoTimer <= 0f)
-            {
-                RemovePhoto();
-            }
+            RemovePhoto();
+            print("hi");
         }
     }
 
@@ -105,7 +110,7 @@ public class PhotoCapture : MonoBehaviour
 
 
 
-    IEnumerator CapturePhoto()
+    IEnumerator CapturePhoto(float score)
     {//alt enter
         viewingPhoto = true;
         cameraUI.SetActive(false);
@@ -121,12 +126,12 @@ public class PhotoCapture : MonoBehaviour
         StockFeels(); //make this a function to add feels
         screenCapture.ReadPixels(regionToRead, 0, 0, false);
         screenCapture.Apply();
-        TakePhotoData();
+        TakePhotoData(score);
         if (isCaptureingPhoto) yield break; //cantspam
         //scoreManager.getPhotoScore();//reference for scoring photo
     }
 
-    public void TakePhotoData()
+    public void TakePhotoData(float score)
     {
         float height = Screen.height;
         float width = Screen.height;
@@ -144,9 +149,12 @@ public class PhotoCapture : MonoBehaviour
         StartCoroutine(CameraFlashEffect());
         fadingAnimation.Play("CameraAphla");
 
-        PhotoDatabase.PhotoData photoData = new PhotoDatabase.PhotoData(); //pasing this object into the function
+        PhotoData photoData = new PhotoData(); //pasing this object into the function
         photoData.texture = photoSprite;
+        photoData.scoreOfPhoto = score;
         photoDatabase.AddPhoto(photoData);
+        
+        
     }
 
     IEnumerator CameraFlashEffect()
@@ -167,6 +175,8 @@ public class PhotoCapture : MonoBehaviour
         photoFrame.SetActive(false);
         UiManager.singleton.ToggleCameraUi(true);
         isHidingPhoto = false;
+        readyForPhoto = true;
+        print("ITS CUTTING");
     }
 
     void RemovePhoto()

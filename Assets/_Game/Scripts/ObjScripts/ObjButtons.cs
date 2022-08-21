@@ -5,15 +5,27 @@ using UnityEngine.UI;
 
 public class ObjButtons : MonoBehaviour
 {
+    [SerializeField] GiveScoreForCompleteObjetive giveScore;
     public Button button1;
     public Button button2;
     public Button button3;
+
+    public GameObject buttonCow;
+    public GameObject buttonPig;
+    public GameObject buttonDuck;
 
     
     // Start is called before the first frame update
     void Start()
     {
-       
+        Button btnCow = button1.GetComponent<Button>();
+        btnCow.onClick.AddListener(CowScore);
+
+        Button btnPig = button2.GetComponent<Button>();
+        btnPig.onClick.AddListener(PigScore);
+
+        Button btnDuck = button3.GetComponent<Button>();
+        btnDuck.onClick.AddListener(DuckScore);
 
 
         button1.enabled = false;
@@ -24,15 +36,34 @@ public class ObjButtons : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.O))
-        {
-            button1.enabled = true;
-            //setColorCompletedCow();
-            SetColorCompletedPig();
-        }
+        //if (Input.GetKeyDown(KeyCode.O))
+        //{
+        //    button1.enabled = true;
+        //    //setColorCompletedCow();
+        //    SetColorCompletedPig();
+        //}
     }
 
-    
+    public void CowScore()
+    {
+        giveScore.AddScore();
+        buttonCow.SetActive(false);
+        
+    }
+
+    public void PigScore()
+    {
+        giveScore.AddScore();
+        buttonPig.SetActive(false);
+
+    }
+
+    public void DuckScore()
+    {
+        giveScore.AddScore();
+        buttonDuck.SetActive(false);
+
+    }
 
     public void SetColorCompletedCow()
     {
