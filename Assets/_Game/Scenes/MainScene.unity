@@ -1182,6 +1182,7 @@ MonoBehaviour:
   scoreManager: {fileID: 354396436}
   photoDatabase: {fileID: 264832098}
   minShowPhotoTime: 1
+  showPhotoTimer: 0
   feelsEnter: {fileID: 322219366}
   feelsExit: {fileID: 295123999}
   feelsStock: {fileID: 679497184}
@@ -3254,7 +3255,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7785234, y: 1}
+    m_SensorSize: {x: 1.7772194, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -4569,7 +4570,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7785234, y: 1}
+    m_SensorSize: {x: 1.7772194, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -6088,7 +6089,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7785234, y: 1}
+    m_SensorSize: {x: 1.7772194, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -16144,7 +16145,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7785234, y: 1}
+    m_SensorSize: {x: 1.7772194, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -19233,7 +19234,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7785234, y: 1}
+    m_SensorSize: {x: 1.7772194, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -20658,7 +20659,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7785234, y: 1}
+    m_SensorSize: {x: 1.7772194, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -21096,7 +21097,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7785234, y: 1}
+    m_SensorSize: {x: 1.7772194, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -26178,9 +26179,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff9cad249cf780e419b8d067e8aab958, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clickPhoto: {fileID: 1566828473}
   pictureLikes: 0
   likesUi: {fileID: 881749267}
+  photos:
+  - {fileID: 1566828473}
+  - {fileID: 1801364351}
+  - {fileID: 613837494}
+  - {fileID: 847177280}
+  - {fileID: 1649643164}
+  - {fileID: 1837917320}
 --- !u!1 &1932590052
 GameObject:
   m_ObjectHideFlags: 0
@@ -28079,31 +28086,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6099466544426126827, guid: bdf981779f8e9784dbe9916bfdabd001, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 43.0542
+      value: 39.694084
       objectReference: {fileID: 0}
     - target: {fileID: 6099466544426126827, guid: bdf981779f8e9784dbe9916bfdabd001, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 19.675
+      value: 18.058542
       objectReference: {fileID: 0}
     - target: {fileID: 6099466544426126827, guid: bdf981779f8e9784dbe9916bfdabd001, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 82.48941
+      value: 70.645294
       objectReference: {fileID: 0}
     - target: {fileID: 6099466544426126827, guid: bdf981779f8e9784dbe9916bfdabd001, type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.39379406
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 6099466544426126827, guid: bdf981779f8e9784dbe9916bfdabd001, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 6099466544426126827, guid: bdf981779f8e9784dbe9916bfdabd001, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.91919875
+      value: -0.5
       objectReference: {fileID: 0}
     - target: {fileID: 6099466544426126827, guid: bdf981779f8e9784dbe9916bfdabd001, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 6099466544426126827, guid: bdf981779f8e9784dbe9916bfdabd001, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -28119,11 +28126,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6099466544426126828, guid: bdf981779f8e9784dbe9916bfdabd001, type: 3}
       propertyPath: far clip plane
-      value: 1500
+      value: 5000
       objectReference: {fileID: 0}
     - target: {fileID: 6099466544426126828, guid: bdf981779f8e9784dbe9916bfdabd001, type: 3}
       propertyPath: near clip plane
-      value: 0.2
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 6099466544426126830, guid: bdf981779f8e9784dbe9916bfdabd001, type: 3}
       propertyPath: m_Name

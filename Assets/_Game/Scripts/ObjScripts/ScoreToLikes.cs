@@ -26,8 +26,11 @@ public class ScoreToLikes : MonoBehaviour
        
     }
 
+    //evertime this parameter is called it gets the reference of score
+    //when this functrion is called it takes click phtoot current state and uses its info
     public int scoreToLikeDo(ClickPhoto clickPhoto)
     {
+
         if (clickPhoto.score == 0)
         {
             return 0;
