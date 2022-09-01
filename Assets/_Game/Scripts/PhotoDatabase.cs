@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class PhotoDatabase : MonoBehaviour
 {
-    
+    public System.Action OnDatabaseChanged;
     public List<PhotoData> photos = new List<PhotoData>();
 
     public void AddPhoto(PhotoData photoData)//parameter what it can take in
     {
         photos.Add(photoData); //this is getting the info out
+        OnDatabaseChanged.Invoke();
     }
 
     public PhotoData GetLastPhoto()

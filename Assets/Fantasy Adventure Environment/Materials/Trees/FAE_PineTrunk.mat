@@ -8,7 +8,8 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: FAE_PineTrunk
-  m_Shader: {fileID: -6465566751694194690, guid: cd32417db29324f4f8f49c2a0e918511, type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: cd32417db29324f4f8f49c2a0e918511,
+    type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -206,7 +207,7 @@ Material:
     - _Variationcolor: {r: 1, g: 1, b: 1, a: 0.078}
     - _WindDirection: {r: 0.93536794, g: 0, b: 0.35367614, a: 0}
   m_BuildTextureStacks: []
---- !u!114 &5971275220263191979
+--- !u!114 &4851488715254839901
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}

@@ -15,7 +15,7 @@ public class DataBaseVeiwer : MonoBehaviour
 
 
 
-    public void OnEnable()
+    public void RefreshPhotos()
     {
         PhotoData photo0 = photoDatabase.GetPhotoAtIndex(0);
         if(photo0 != null)
@@ -56,10 +56,11 @@ public class DataBaseVeiwer : MonoBehaviour
         }
 
     }
+    
     // Start is called before the first frame update
     void Start()
     {
-        
+        photoDatabase.OnDatabaseChanged += RefreshPhotos;
     }
 
     // Update is called once per frame

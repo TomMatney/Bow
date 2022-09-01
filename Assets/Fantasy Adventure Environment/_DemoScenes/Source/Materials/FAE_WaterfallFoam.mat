@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-7228358996205335780
+--- !u!114 &-6224393447076815894
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
@@ -21,7 +21,8 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: FAE_WaterfallFoam
-  m_Shader: {fileID: -6465566751694194690, guid: 94d45c83dd926f8479fbc3280e9731e3, type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: 94d45c83dd926f8479fbc3280e9731e3,
+    type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []

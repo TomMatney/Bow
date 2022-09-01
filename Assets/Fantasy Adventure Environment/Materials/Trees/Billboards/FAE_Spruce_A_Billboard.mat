@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-7767420570531551965
+--- !u!114 &-8641790132133520977
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
@@ -21,7 +21,8 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: FAE_Spruce_A_Billboard
-  m_Shader: {fileID: -6465566751694194690, guid: 7e07cc6c21cf51b4387f5678a0a21398, type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: 7e07cc6c21cf51b4387f5678a0a21398,
+    type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []

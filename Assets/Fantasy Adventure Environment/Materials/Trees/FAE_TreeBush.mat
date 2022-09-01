@@ -8,7 +8,8 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: FAE_TreeBush
-  m_Shader: {fileID: -6465566751694194690, guid: 85827a98514358f438446da0fc64b0f0, type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: 85827a98514358f438446da0fc64b0f0,
+    type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -189,7 +190,7 @@ Material:
     - _Variationcolor: {r: 0.9852941, g: 0.6319472, b: 0, a: 0.047}
     - _WindDirection: {r: 0.93536794, g: 0, b: 0.35367614, a: 0}
   m_BuildTextureStacks: []
---- !u!114 &3322658298008814710
+--- !u!114 &7097113329555698865
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}

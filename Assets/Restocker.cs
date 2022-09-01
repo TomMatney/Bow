@@ -14,9 +14,17 @@ public class Restocker : MonoBehaviour
     public CinemachineVirtualCameraBase vcam;
     public CinemachineVirtualCameraBase stockCam;
 
+    public CinemachineVirtualCameraBase labtopCam;
+
+
+
+
+
     public bool isInArea;
 
     public bool inOut;
+
+    public bool stockOrLabtop;
 
     [Header("things to turn off")]
     public MonoBehaviour playerControl;
@@ -30,15 +38,33 @@ public class Restocker : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        stockOrLabtop = true;
         isInArea = false;
         inOut = false;
-        photoDatabaseUi.SetActive(false);
+        //photoDatabaseUi.SetActive(false);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.E) && isInArea )
+        if (Input.GetKeyDown(KeyCode.D) && stockOrLabtop && inOut)
+        {
+            stockOrLabtop = false;
+            stockCam.Priority = 8;
+            labtopCam.Priority = 11;
+            
+        }
+        else if (Input.GetKeyDown(KeyCode.D) && !stockOrLabtop && inOut)
+        {
+            
+            stockOrLabtop = true;
+            labtopCam.Priority = 8;
+            stockCam.Priority = 11;
+           
+        }
+        
+
+        if (Input.GetKeyDown(KeyCode.E) && isInArea )
         {
             cursorManager.showCursor();
             isInArea = false;
@@ -51,7 +77,7 @@ public class Restocker : MonoBehaviour
             animator.GetComponent<Animator>().SetFloat("Speed", 0);
             playerControl.enabled = false;
             reStock();
-            photoDatabaseUi.SetActive(true);
+            //photoDatabaseUi.SetActive(true);
 
 
         }
@@ -65,7 +91,9 @@ public class Restocker : MonoBehaviour
             player.SprintSpeed = 5.335f;
             playerControl.enabled = true;
             photoControl.GetComponent<PhotoMode>().enabled = true;
-            photoDatabaseUi.SetActive(false);
+            //photoDatabaseUi.SetActive(false);
+            labtopCam.Priority = 8;
+            vcam.Priority = 11;
 
         }    
     }
