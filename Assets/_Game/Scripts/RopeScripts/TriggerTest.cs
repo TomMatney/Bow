@@ -2,11 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AttachPicture : MonoBehaviour
+public class TriggerTest : MonoBehaviour
 {
-    [SerializeField] LineRenderer lineRender;
-    public int lineIndex;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -16,7 +13,11 @@ public class AttachPicture : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector3 postion = lineRender.GetPosition(lineIndex);
-        transform.position = postion;
+        
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        Debug.Log("REEEE");
     }
 }

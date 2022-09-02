@@ -22,7 +22,7 @@ public class UiScore : MonoBehaviour
 
     private void OnEnable()
     {
-        Debug.Log("has enabled");
+       Debug.Log("has enabled");
        photoMode.OnPhotoTaken += updateScore;
     }
 

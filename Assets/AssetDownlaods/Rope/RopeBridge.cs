@@ -70,8 +70,8 @@ public class RopeBridge : MonoBehaviour
 
             this.mousePostitionWorld = Camera.main.ScreenToWorldPoint(new Vector3(screenMousePos.x, screenMousePos.y, 1));
             mousePostitionWorld.x = transform.position.x;
-            print(mousePostitionWorld);
-            print(selectedPicture.transform.position + "teehee");
+            //print(mousePostitionWorld);
+            //print(selectedPicture.transform.position + "teehee");
 
            
             //for (var i = 0; i < segmentLength; i++)
@@ -87,6 +87,12 @@ public class RopeBridge : MonoBehaviour
        
     }
 
+    public void photoPullDown()
+    { 
+            this.moveToMouse = false;
+            selectedPicture = null;
+        
+    }
     private void FixedUpdate()
     {
         this.Simulate();
