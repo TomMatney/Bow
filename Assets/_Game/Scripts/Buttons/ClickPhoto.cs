@@ -7,6 +7,8 @@ using Cinemachine;
 public class ClickPhoto : MonoBehaviour
 {
     [SerializeField] ScoreToLikes scoreToLikes;
+    [SerializeField] AttachPicture attachPicture;
+
     public Button yourButton;
     public Button quitButton;
     public Button scoreButton;
@@ -22,8 +24,8 @@ public class ClickPhoto : MonoBehaviour
         quitButton.gameObject.SetActive(false);
         scoreButton.gameObject.SetActive(false);
 
-        Button btn = yourButton.GetComponent<Button>();
-        btn.onClick.AddListener(TaskOnClick);
+        //Button btn = yourButton.GetComponent<Button>();
+        //btn.onClick.AddListener(TaskOnClick);
 
         Button btnQuit = quitButton.GetComponent<Button>();
         btnQuit.onClick.AddListener(EscClick);
@@ -32,11 +34,11 @@ public class ClickPhoto : MonoBehaviour
         btnScore.onClick.AddListener(ScoreClick);
 
     }
-    void TaskOnClick()
+    public void TaskOnClick()
     {
         scoreButton.gameObject.SetActive(true);
         quitButton.gameObject.SetActive(true);
-        zoomPicCamera.Priority = 11;
+        //zoomPicCamera.Priority = 11;
         Debug.Log("You have clicked the button!");
     }
 
@@ -44,7 +46,9 @@ public class ClickPhoto : MonoBehaviour
     {
         scoreButton.gameObject.SetActive(false);
         quitButton.gameObject.SetActive(false);
-        zoomPicCamera.Priority = 8;
+        attachPicture.movePhotoOut = true;
+
+        //zoomPicCamera.Priority = 8;
         
     }
 

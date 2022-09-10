@@ -21,7 +21,7 @@ public class ScoreToLikes : MonoBehaviour
     void Update()
     {
         //calcLikes();
-        likesUi.SetText(pictureLikes.ToString("Likes:" + pictureLikes));
+        likesUi.SetText("Likes:" + pictureLikes);
 
        
     }
@@ -39,6 +39,7 @@ public class ScoreToLikes : MonoBehaviour
 
 
         pictureLikes += (int)(clickPhoto.score / 100 * 1.2);
+        print(clickPhoto.score);
         return pictureLikes;
         //100 sccore = 1 like
         //200 score = 2 likes

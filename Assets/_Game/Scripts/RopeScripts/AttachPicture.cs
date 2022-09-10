@@ -9,7 +9,7 @@ public class AttachPicture : MonoBehaviour
     [SerializeField] Restocker restock;
     public int lineIndex;
 
-    [SerializeField] bool movePhotoOut = true;
+    public bool movePhotoOut = true;
 
     public MMFeedbacks animationPicture;
 
@@ -21,11 +21,10 @@ public class AttachPicture : MonoBehaviour
 
     public void lineIndexNull()
     {
-        if(restock.inOut)
-        {
+       
             movePhotoOut = false;
             attachPicMove();
-        }
+       
         
     }
 
